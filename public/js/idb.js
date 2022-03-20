@@ -8,9 +8,8 @@ request.onupgradeneeded = function(event) {
     // save a reference to the database
     const db = event.target.result;
     // create an object store (table) called 'new-deposit', set it to have an auto incrementing primary key of sorts
-    db.createObjectStore('new-deposit', {autoIncrement: true });
+    db.createObjectStore('new-transaction', {autoIncrement: true });
 
-    db.createObjectStore('new-expense', {autoIncrement: true });
 };
 
 // upon a successful
@@ -33,20 +32,15 @@ request.onerror = function(event) {
 // this function will be executed when attempting to submit a new deposit & there's no internet connection
 function saveRecord(record) {
     // open a new transaction with the database with read & write permission
-    const transaction = db.transaction(['new_deposit'], 'readwrite');
+    const transaction = db.transaction(['new_transaction'], 'readwrite');
     
     // access the object store for 'new_pizza'
-    const depositObjectStore = transaction.objectStore('new_deposit');
+    const budgetObjectStore = transaction.objectStore('new_transaction');
 
     // add record to your store with add method
-    depositObjectStore.add(record);
+    budgetObjectStore.add(record);
 };
 
-function saveRecord(record) {
-    
-    const transaction = db.transaction(['new_expense'], 'readwrite');
+function uploadTransaction() {
 
-    const expenseObjectStore = transaction.objectStore('new_expense');
-
-    expenseObjectStore.add(record);
 }
