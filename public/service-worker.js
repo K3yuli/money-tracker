@@ -5,7 +5,12 @@ const CACHE_NAME = APP_PREFIX + VERSION;
 // use the self keyword to instantiate listeners on the service worker.
 // The context of self here refers to the service worker object.
 self.addEventListener('install', function (e) {
-
+    e.waitUntil(
+        caches.open(CACHE_NAME).then(function (cache) {
+            console.log('installing cache : ' + CACHE_NAME)
+            return cache.addAll(FILES_TO_CACHE)
+        })
+    )
 })
 
 const FILES_TO_CACHE = [
