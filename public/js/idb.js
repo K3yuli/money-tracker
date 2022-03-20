@@ -29,3 +29,24 @@ request.onerror = function(event) {
     // log error here
     console.log(event.target.errorCode);
 };
+
+// this function will be executed when attempting to submit a new deposit & there's no internet connection
+function saveRecord(record) {
+    // open a new transaction with the database with read & write permission
+    const transaction = db.transaction(['new_deposit'], 'readwrite');
+    
+    // access the object store for 'new_pizza'
+    const depositObjectStore = transaction.objectStore('new_deposit');
+
+    // add record to your store with add method
+    depositObjectStore.add(record);
+};
+
+function saveRecord(record) {
+    
+    const transaction = db.transaction(['new_expense'], 'readwrite');
+
+    const expenseObjectStore = transaction.objectStore('new_expense');
+
+    expenseObjectStore.add(record);
+}
