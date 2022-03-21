@@ -17,4 +17,3 @@ const FILES_TO_CACHE = [
     "./routes/api.js",
     "./server.js"
 ]
-
