@@ -2,7 +2,6 @@ const APP_PREFIX = 'MoneyTracker-';
 const VERSION = 'version_01';
 const CACHE_NAME = APP_PREFIX + VERSION;
 
-
 const FILES_TO_CACHE = [
     "./models/transaction.js",
     "./public/css/style.css",
@@ -23,3 +22,4 @@ self.addEventListener('install', function (e) {
         })
     )
 })
+
