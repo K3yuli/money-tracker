@@ -2,11 +2,6 @@ const APP_PREFIX = 'MoneyTracker-';
 const VERSION = 'version_01';
 const CACHE_NAME = APP_PREFIX + VERSION;
 
-// use the self keyword to instantiate listeners on the service worker.
-// The context of self here refers to the service worker object.
-self.addEventListener('install', function (e) {
-    
-})
 
 const FILES_TO_CACHE = [
     "./models/transaction.js",
@@ -17,3 +12,14 @@ const FILES_TO_CACHE = [
     "./routes/api.js",
     "./server.js"
 ]
+
+// use the self keyword to instantiate listeners on the service worker.
+// The context of self here refers to the service worker object.
+self.addEventListener('install', function (e) {
+    e.awaitUntil(
+        caches.open(CACHE_NAME).then(function (cache) {
+            console.log('installing cache :' + CACHE_NAME)
+            return cache.addAll(FILES_TO_CACHE)
+        })
+    )
+})
