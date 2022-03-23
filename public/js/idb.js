@@ -9,7 +9,7 @@ request.onupgradeneeded = function(event) {
     // save a reference to the database
     const db = event.target.result;
     // create an object store (table) called 'new-deposit', set it to have an auto incrementing primary key of sorts
-    db.createObjectStore('new-transaction', {autoIncrement: true });
+    db.createObjectStore('new_transaction', {autoIncrement: true });
 
 };
 
