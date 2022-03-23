@@ -20,8 +20,8 @@ request.onsuccess = function(event) {
 
     // check if app is online, if yes run uploadPizza() function to send all local db data to api
     if (navigator.onLine) {
-        // uploadDeposit();
-        // uploadExpense();
+        uploadTransaction();
+
     }
 };
 
@@ -43,12 +43,13 @@ function saveRecord(record) {
 };
 
 function uploadTransaction() {
+
     const transaction = db.transaction(['new_transaction'], 'readwrite');
 
     const budgetObjectStore = transaction.objectStore('new_transaction');
 
     const getAll = budgetObjectStore.getAll();
-
+    // on success
     getAll.onsuccess = function() {
 
         if(getAll.result.length > 0) {
@@ -72,7 +73,7 @@ function uploadTransaction() {
 
                     budgetObjectStore.clear();
 
-                    alert('All saved transactions has been submitted!');
+                    alert('All saved transactions have been submitted!');
                 })
                 .catch(err => {
                     console.log(err);
