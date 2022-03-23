@@ -1,4 +1,3 @@
-const { response } = require("express");
 
  // create variable to hold db connection
 let db;
